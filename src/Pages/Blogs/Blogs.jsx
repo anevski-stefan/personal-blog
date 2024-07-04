@@ -33,10 +33,12 @@ function Blogs() {
     <Navbar />
     <div className="blogs__wrapper">
       {error && (<p>{error}</p>)}
-      {blogs && (
-        blogs.map(blog => (
-          <BlogCard key={blog.id} blog={blog}/>
+      {blogs && blogs.length > 0 ? (
+      blogs.map(blog => (
+          <BlogCard key={blog.id} blog={blog} />
         ))
+      ) : (
+        <p>No blogs available!</p>
       )}
     </div>
     <Pagination count={10} variant="outlined" shape="rounded" sx={{display: 'flex', justifyContent: 'center'}}/>
