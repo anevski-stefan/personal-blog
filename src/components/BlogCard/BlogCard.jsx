@@ -2,19 +2,19 @@ import React from 'react'
 import { Button } from '@mui/material'
 import "./BlogCard.css"
 
-
-function BlogCard() {
+/* eslint-disable react/prop-types */
+function BlogCard({ blog }) {
   return (
     <div className='blog-card__wrapper'>
         <div className="blog-card__image">
-            <img src="https://placehold.co/600x400" alt="" />
+            <img src={blog.imageSrc} alt={blog.title} />
         </div>
         <div className="blog_card__info-wrapper">
             <div className="blog-card__title">
-                <h2>Blog title #1</h2>
+                <h2>{blog.title}</h2>
             </div>
             <p className="blog-card__description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem sunt cum, exercitationem odio a veniam quidem ad expedita illo veritatis!
+                {blog.description.substring(0, 100)}...
             </p>
             <Button variant="contained">Read More</Button>
         </div>

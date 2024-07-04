@@ -2,22 +2,34 @@
     width: 250px;
     min-height: 300px;
     border: 1px dashed gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .blog-card__image img {
+    height: 200px;
     width: 100%;
 }
 
 .blog-card__title h2 {
     width: 100%;
+    margin-top: 0;
+    font-size: 1.2rem;
 }
 
 .blog-card__description {
     width: 100%;
+    height: 100%;
+    margin-top: 0;
     text-align: left;
 }
 
 .blog_card__info-wrapper {
     margin: 10px 10px;
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    flex: 1;
 }
