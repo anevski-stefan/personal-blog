@@ -1,9 +1,15 @@
 import React from 'react'
 import { Button } from '@mui/material'
 import "./BlogCard.css"
+import { FaRegEdit } from 'react-icons/fa'
+import { Link } from 'react-router-dom'; 
 
 /* eslint-disable react/prop-types */
 function BlogCard({ blog }) {
+    const shortDescription = blog.description.length > 100 ?
+    blog.description.substring(0, 100) + "..." :
+    blog.description;
+    
   return (
     <div className='blog-card__wrapper'>
         <div className="blog-card__image">
@@ -14,9 +20,11 @@ function BlogCard({ blog }) {
                 <h2>{blog.title}</h2>
             </div>
             <p className="blog-card__description">
-                {blog.description.substring(0, 100)}...
+                {shortDescription}
             </p>
-            <Button variant="contained">Read More</Button>
+            
+            <Button component={Link} to={`/blogs/${blog.id}`} variant="contained">Read More</Button>
+                
         </div>
     </div>
   )

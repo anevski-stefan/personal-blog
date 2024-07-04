@@ -1,0 +1,22 @@
+.blog-details {
+    margin: 0 auto;
+    width: 900px;
+    padding: 20px;
+    margin-top: 50px;
+    border: 1px dashed gray;
+}
+
+.blog-details img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.btns {
+    display: flex;
+    justify-content: start;
+}
+
+.btns :last-child {
+    margin-left: 10px;
+}
