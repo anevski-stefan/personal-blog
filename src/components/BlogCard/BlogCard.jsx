@@ -12,9 +12,9 @@ function BlogCard({ blog }) {
     
   return (
     <div className='blog-card__wrapper'>
-        <div className="blog-card__image">
-            <img src={blog.imageSrc} alt={blog.title} />
-        </div>
+        {blog.imageSrc && blog.imageSrc.startsWith("https://") ? <div className="blog-card__image">
+            <img src={blog.imageSrc} alt={blog.title} /></div> : <div className='blog-card__no-image'><p>No image available.</p></div>}
+        
         <div className="blog_card__info-wrapper">
             <div className="blog-card__title">
                 <h2>{blog.title}</h2>
