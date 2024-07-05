@@ -9,12 +9,19 @@ import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 const BlogDetails = () => {
     const {id} = useParams()
     const navigate = useNavigate();
-
+    const [token, setToken] = useState(false);
     const [imageSrc, setImageSrc] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [createdAt, setCreatedAt] = useState('');
 
+    useEffect(() => {
+      if(sessionStorage.getItem('token')){
+        let data = JSON.parse(sessionStorage.getItem('token'))
+        setToken(data)
+      }
+    }, [])
+    
     useEffect(() => {
         const fetchBlog = async () => {
           const {data, error} = await supabase
@@ -76,12 +83,12 @@ const BlogDetails = () => {
             <p>{description}</p>
             
             <div className='btns'>
-              <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">
+              {token ? <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">
                 <FaRegEdit /> Edit
-              </Button> 
-              <Button component={Link} to={`/blogs/${id}`} variant="outlined" onClick={handleDelete} style={{ borderColor: 'red', color: 'red' }}>
+              </Button> : ""}
+              {token ? <Button component={Link} to={`/blogs/${id}`} variant="outlined" onClick={handleDelete} style={{ borderColor: 'red', color: 'red' }}>
               <FaRegTrashAlt /> Delete
-              </Button>            
+              </Button> : ""}            
             </div>
         </div>
     </>

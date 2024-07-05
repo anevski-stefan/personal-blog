@@ -1,10 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppBar, Toolbar, IconButton, Drawer, List, ListItem, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
 function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [token, setToken] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      setToken(JSON.parse(token));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('token');
+    setToken(null); 
+    navigate('/')
+  };
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -14,13 +30,21 @@ function Navbar() {
   };
 
   const menuItems = [
-    { text: 'Home', link: '/' },
+    { text: 'Home', link: '/', showWhenLoggedOut: true },
     { text: 'Blogs', link: '/blogs' },
     { text: 'Portfolio', link: '/portfolio' },
-    { text: 'About me', link: '/about' },
-    { text: 'Contact', link: '/contact' },
-    { text: 'Add Blog', link: '/blogs/add' },
+    { text: 'About me', link: '/about', showWhenLoggedOut: true },
+    { text: 'Contact', link: '/contact', showWhenLoggedOut: true },
+    { text: 'Admin Login', link: '/admin', showWhenLoggedOut: true },
+    { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true },
+    { text: 'Logout', link: '/logout', showWhenLoggedIn: true, onClick: handleLogout }, 
   ];
+
+  const filteredMenuItems = menuItems.filter(item => {
+    if (item.showWhenLoggedIn && !token) return false;
+    if (item.showWhenLoggedOut && token) return false;
+    return true;
+  });
 
   return (
     <AppBar position="static" className="navbar">
@@ -28,9 +52,13 @@ function Navbar() {
         <h1>Portfolio</h1>
         <div className="desktop-menu">
           <ul className="menu">
-            {menuItems.map((item) => (
+            {filteredMenuItems.map((item) => (
               <li key={item.text}>
-                <a href={item.link}>{item.text}</a>
+                {item.onClick ? (
+                  <a href="#" onClick={item.onClick}>{item.text}</a>
+                ) : (
+                  <Link to={item.link}>{item.text}</Link>
+                )}
               </li>
             ))}
           </ul>
@@ -52,8 +80,8 @@ function Navbar() {
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {menuItems.map((item) => (
-              <ListItem button key={item.text} component="a" href={item.link}>
+            {filteredMenuItems.map((item) => (
+              <ListItem button key={item.text} component={item.onClick ? 'a' : Link} to={item.link} onClick={item.onClick}>
                 <ListItemText primary={item.text} />
               </ListItem>
             ))}

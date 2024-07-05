@@ -93,7 +93,7 @@ const AddBlog = () => {
                 </Grid>
             </Grid>
             {error && <p className='error'>{error}</p>}
-            </form>
+        </form>
         </Paper>
         </div>
     </>
