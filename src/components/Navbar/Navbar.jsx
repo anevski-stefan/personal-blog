@@ -18,8 +18,8 @@ function Navbar() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('token');
-    setToken(null); 
-    navigate('/')
+    setToken(null);
+    navigate('/');
   };
 
   const toggleDrawer = (open) => (event) => {
@@ -37,7 +37,7 @@ function Navbar() {
     { text: 'Contact', link: '/contact', showWhenLoggedOut: true },
     { text: 'Admin Login', link: '/admin', showWhenLoggedOut: true },
     { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true },
-    { text: 'Logout', link: '/logout', showWhenLoggedIn: true, onClick: handleLogout }, 
+    { text: 'Logout', link: '/logout', showWhenLoggedIn: true, onClick: handleLogout },
   ];
 
   const filteredMenuItems = menuItems.filter(item => {

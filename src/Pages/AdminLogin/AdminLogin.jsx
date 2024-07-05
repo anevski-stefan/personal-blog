@@ -3,13 +3,16 @@ import React, { useState } from 'react';
 import "./AdminLogin.css";
 import supabase from '../../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 
-const AdminLogin = ({setToken}) => {
+
+const AdminLogin = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+    const [error, setError] = useState(null);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -29,22 +32,24 @@ const AdminLogin = ({setToken}) => {
             });
             if (error) {
                 console.error('Error logging in:', error.message);
+                setError(error.message);
             } else {
-                if (data) {
-                    console.log('Logged in successfully:', data);
-                    setToken(data);
-                    navigate('/')
-                } else {
-                    console.error('User object is undefined.');
-                }
+                console.log('Logged in successfully:', data);
+                setError(null);
+                sessionStorage.setItem('token', JSON.stringify(data));
+                navigate('/blogs');
+                
             }
         } catch (error) {
             console.error('Unhandled error:', error.message);
+            setError(error);
         }
     };
     
 
     return (
+        <>
+        <Navbar />
         <div className="admin-panel__wrapper">
             <Paper elevation={3} style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
                 <Typography variant="h5" gutterBottom>
@@ -80,8 +85,10 @@ const AdminLogin = ({setToken}) => {
                         </Grid>
                     </Grid>
                 </form>
+                {error && (<p className="error-message">{error}</p>)}
             </Paper>
         </div>
+        </>
     );
 };
 
