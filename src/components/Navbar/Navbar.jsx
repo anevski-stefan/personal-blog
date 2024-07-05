@@ -19,6 +19,7 @@ function Navbar() {
     { text: 'Portfolio', link: '/portfolio' },
     { text: 'About me', link: '/about' },
     { text: 'Contact', link: '/contact' },
+    { text: 'Add Blog', link: '/blogs/add' },
   ];
 
   return (

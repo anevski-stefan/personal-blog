@@ -1,6 +1,7 @@
 .blog-details {
     margin: 0 auto;
-    width: 900px;
+    max-width: 100%;
+    width: 60%;
     padding: 20px;
     margin-top: 50px;
     border: 1px dashed gray;
@@ -19,4 +20,14 @@
 
 .btns :last-child {
     margin-left: 10px;
+}
+
+@media (max-width: 1024px) {
+    .blog-details {
+        width: 100%;
+    }
+
+    .blog-details img {
+        max-width: 100%;
+    }
 }
