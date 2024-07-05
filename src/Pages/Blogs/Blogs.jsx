@@ -41,7 +41,7 @@ function Blogs() {
         <p>No blogs available!</p>
       )}
     </div>
-    <Pagination count={10} variant="outlined" shape="rounded" sx={{display: 'flex', justifyContent: 'center'}}/>
+    <Pagination className="pagination" count={10} variant="outlined" shape="rounded" sx={{display: 'flex', justifyContent: 'center'}}/>
     </div>
   )
 }

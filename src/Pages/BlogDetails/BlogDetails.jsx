@@ -5,6 +5,7 @@ import "./BlogDetails.css";
 import Navbar from '../../components/Navbar/Navbar';
 import { Button } from '@mui/material';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const BlogDetails = () => {
     const {id} = useParams()
@@ -33,6 +34,7 @@ const BlogDetails = () => {
     
         if(error) {
             console.error('Error inserting data:', error.message);
+            toast.error(error.message);
             navigate('/blogs', {replace: true});
         }
     
@@ -65,10 +67,12 @@ const BlogDetails = () => {
 
         if(error) {
           console.log(error);
+          toast.error(error);
           return;
         }
 
         if(data) {
+          toast.success('The blog was succesfully removed!');
           navigate('/blogs', { replace: true })
         }
       } 

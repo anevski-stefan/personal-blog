@@ -4,7 +4,7 @@ import "./AdminLogin.css";
 import supabase from '../../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
-
+import { toast } from 'react-toastify';
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -37,7 +37,8 @@ const AdminLogin = () => {
                 console.log('Logged in successfully:', data);
                 setError(null);
                 sessionStorage.setItem('token', JSON.stringify(data));
-                navigate('/blogs');
+                toast.success("Logged in successfully");
+                navigate('/blogs', { state: { successMessage: 'Logged in successfully!' } });
                 
             }
         } catch (error) {
