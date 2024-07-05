@@ -6,7 +6,6 @@ import Navbar from '../../components/Navbar/Navbar';
 import { Button } from '@mui/material';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 
-
 const BlogDetails = () => {
     const {id} = useParams()
     const navigate = useNavigate();
