@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import "./EditBlog.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import supabase from '../../config/supabaseClient';
-
+import { toast } from 'react-toastify';
 
 const EditBlog = () => {
   const {id} = useParams()
@@ -26,6 +26,7 @@ const EditBlog = () => {
 
     if(error) {
       console.error('Error inserting data:', error.message);
+      toast.error(error.message);
       navigate('/', {replace: true});
     }
 
@@ -56,15 +57,18 @@ const EditBlog = () => {
     if (error) {
       console.error('Error updating blog:', error.message);
       setError('Failed to update blog. Please try again.');
+      toast.error(error.message);
       return;
     }
 
     if (data) {
       setError(null);
+      toast.success('The blog was sucessfully updated!')
       navigate('/blogs');
     }
   } catch (error) {
     console.error('Unhandled error:', error.message);
+    toast.error(error.message)
     setError('An unexpected error occurred. Please try again.');
   }
 };

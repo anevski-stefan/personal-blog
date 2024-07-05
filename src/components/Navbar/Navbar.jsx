@@ -49,7 +49,7 @@ function Navbar() {
   return (
     <AppBar position="static" className="navbar">
       <Toolbar className='toolbar'>
-        <h1>Portfolio</h1>
+        <h1><a href="/">Portfolio</a></h1>
         <div className="desktop-menu">
           <ul className="menu">
             {filteredMenuItems.map((item) => (
