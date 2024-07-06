@@ -5,6 +5,45 @@ import "./EditBlog.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import supabase from '../../config/supabaseClient';
 import { toast } from 'react-toastify';
+import ReactQuill, { Quill } from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import Footer from '../../components/Footer/Footer';
+
+const Image = Quill.import('formats/image');
+class CustomImage extends Image {
+  static create(value) {
+    let node = super.create(value);
+    node.classList.add('img-fluid'); 
+    let container = document.createElement('div');
+    container.classList.add('img-fluid__container');
+    container.appendChild(node);
+    return container;
+  }
+}
+Quill.register(CustomImage, true);
+
+const modules = {
+  toolbar: [
+    [{ "font": [] }, { "size": ["small", false, "large", "huge"] }], 
+
+    ["bold", "italic", "underline", "strike"],
+
+    [{ "color": [] }, { "background": [] }],
+
+    [{ "script": "sub" }, { "script": "super" }],
+
+    [{ "header": 1 }, { "header": 2 }, "blockquote", "code-block"],
+
+    [{ "list": "ordered" }, { "list": "bullet" }, { "indent": "-1" }, { "indent": "+1" }],
+
+    [{ "direction": "rtl" }, { "align": [] }],
+
+    ["link", "image", "video", "formula"],
+
+    ["clean"]
+]
+};
+
 
 const EditBlog = () => {
   const {id} = useParams()
@@ -64,7 +103,7 @@ const EditBlog = () => {
     if (data) {
       setError(null);
       toast.success('The blog was sucessfully updated!')
-      navigate('/blogs');
+      navigate(`/blogs/${id}`);
     }
   } catch (error) {
     console.error('Unhandled error:', error.message);
@@ -106,18 +145,15 @@ const EditBlog = () => {
                     required
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    fullWidth
-                    label="Description"
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    required
-                    />
+                <Grid item xs={12}> 
+                    <ReactQuill
+                  className="editor"
+                  modules={modules}
+                  theme='snow'
+                  value={description}
+                  onChange={setDescription}
+                  required
+                />
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary">
@@ -129,6 +165,7 @@ const EditBlog = () => {
             </form>
         </Paper>
         </div>
+        <Footer/>
     </>
   );
 };

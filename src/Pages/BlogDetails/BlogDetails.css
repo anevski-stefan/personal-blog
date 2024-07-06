@@ -6,6 +6,15 @@
     margin-top: 50px;
     box-shadow: 5px 5px 10px 2px rgba(217, 210, 210, 0.8);
     border-radius: 10px;
+    text-align: center;
+}
+
+.blog-details h1 {
+    font-size: 1.5rem;
+}
+
+.blog-details .createdAt {
+    padding-bottom: 10px;
 }
 
 .blog-details img {
@@ -13,16 +22,42 @@
     height: 600px;
     object-fit: cover;
     border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.description {
+    margin-bottom: 30px;
+    text-align: left;
+    padding: 0 20px;
+    text-align: justify;
 }
 
 .btns {
     display: flex;
     justify-content: start;
+    margin: 0 20px;
 }
 
 .btns :last-child {
     margin-left: 10px;
 }
+
+.description {
+    display: flex;
+    flex-direction: column;
+    line-height: 40px;
+}
+
+.ql-syntax {
+    line-height: normal;
+}
+
+.img-fluid__container {
+}
+
+.img-fluid {
+}
+
 
 @media (max-width: 1024px) {
     .blog-details {

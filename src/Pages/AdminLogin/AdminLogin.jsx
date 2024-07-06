@@ -5,6 +5,7 @@ import supabase from '../../config/supabaseClient';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import { toast } from 'react-toastify';
+import Footer from '../../components/Footer/Footer';
 
 const AdminLogin = () => {
     const navigate = useNavigate();
@@ -89,6 +90,7 @@ const AdminLogin = () => {
                 {error && (<p className="error-message">{error}</p>)}
             </Paper>
         </div>
+        <Footer/>
         </>
     );
 };

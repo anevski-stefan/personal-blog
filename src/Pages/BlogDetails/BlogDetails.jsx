@@ -6,6 +6,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import { Button } from '@mui/material';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import Footer from '../../components/Footer/Footer';
+
 
 const BlogDetails = () => {
     const {id} = useParams()
@@ -45,10 +47,7 @@ const BlogDetails = () => {
             const formattedDate = new Date(data.created_at).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric'
+                day: 'numeric'
             });
             setCreatedAt(formattedDate);        
         }
@@ -81,20 +80,21 @@ const BlogDetails = () => {
     <>
     <Navbar />
         <div className='blog-details'>
-            <img src={imageSrc} />
-            <h1>{title}</h1>
-            <p className='createdAt'>{createdAt}</p>
-            <p>{description}</p>
-            
-            <div className='btns'>
-              {token ? <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">
-                <FaRegEdit /> Edit
-              </Button> : ""}
-              {token ? <Button component={Link} to={`/blogs/${id}`} variant="outlined" onClick={handleDelete} style={{ borderColor: 'red', color: 'red' }}>
-              <FaRegTrashAlt /> Delete
-              </Button> : ""}            
-            </div>
+          <h1>{title}</h1>
+          <p className='createdAt'>{createdAt}</p>
+          {imageSrc.startsWith("https://") ? <img src={imageSrc} /> : "No image available" }
+          <div dangerouslySetInnerHTML={{__html: description}} className='description ql-editor'></div>
+          
+          <div className='btns'>
+            {token ? <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">
+              <FaRegEdit /> Edit
+            </Button> : ""}
+            {token ? <Button component={Link} to={`/blogs/${id}`} variant="outlined" onClick={handleDelete} style={{ borderColor: 'red', color: 'red' }}>
+            <FaRegTrashAlt /> Delete
+            </Button> : ""}            
+          </div>
         </div>
+        <Footer/>
     </>
   )
 }

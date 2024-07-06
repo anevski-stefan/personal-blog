@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import "./Blogs.css"
 import { Pagination } from '@mui/material'
 import supabase from '../../config/supabaseClient';
+import Footer from '../../components/Footer/Footer'
 
 
 function Blogs() {
@@ -42,6 +43,7 @@ function Blogs() {
       )}
     </div>
     <Pagination className="pagination" count={10} variant="outlined" shape="rounded" sx={{display: 'flex', justifyContent: 'center'}}/>
+    <Footer/>
     </div>
   )
 }
