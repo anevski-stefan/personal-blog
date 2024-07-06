@@ -32,9 +32,9 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
-          {token ? <Route path="blogs/add" element={<AddBlog />} /> : null}
+          <Route path="blogs/add" element={<AddBlog />} />
           <Route path="blogs/:id" element={<BlogDetails />} />
-          {token ? <Route path="blogs/:id/edit" element={<EditBlog />} /> : null}
+          <Route path="blogs/:id/edit" element={<EditBlog />} />
           <Route path="admin" element={<AdminLogin setToken={setToken} />} />
           {/* <Route path="portfolio" element={<Portfolio />} /> */}
           {/* <Route path="about" element={<AboutMe />} /> */}

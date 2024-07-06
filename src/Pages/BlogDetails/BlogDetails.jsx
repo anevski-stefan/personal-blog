@@ -7,6 +7,7 @@ import { Button } from '@mui/material';
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 
+
 const BlogDetails = () => {
     const {id} = useParams()
     const navigate = useNavigate();
@@ -84,7 +85,7 @@ const BlogDetails = () => {
             <img src={imageSrc} />
             <h1>{title}</h1>
             <p className='createdAt'>{createdAt}</p>
-            <p>{description}</p>
+            <p dangerouslySetInnerHTML={{__html: description}}></p>
             
             <div className='btns'>
               {token ? <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">

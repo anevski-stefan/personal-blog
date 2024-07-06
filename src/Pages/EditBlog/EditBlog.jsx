@@ -5,6 +5,24 @@ import "./EditBlog.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import supabase from '../../config/supabaseClient';
 import { toast } from 'react-toastify';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+const modules = {
+  toolbar: [
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    [{ font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
+    [
+      { list: "ordered" },
+      { list: "bullet" },
+      { indent: "-1" },
+      { indent: "+1" }
+    ],
+    ["link", "image", "video"]
+  ]
+};
 
 const EditBlog = () => {
   const {id} = useParams()
@@ -106,18 +124,15 @@ const EditBlog = () => {
                     required
                     />
                 </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    fullWidth
-                    label="Description"
-                    name="description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                    variant="outlined"
-                    multiline
-                    rows={4}
-                    required
-                    />
+                <Grid item xs={12}> 
+                    <ReactQuill
+                  className="editor"
+                  modules={modules}
+                  theme='snow'
+                  value={description}
+                  onChange={setDescription}
+                  required
+                />
                 </Grid>
                 <Grid item xs={12}>
                     <Button type="submit" variant="contained" color="primary">
