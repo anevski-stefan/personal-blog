@@ -7,6 +7,7 @@ import supabase from '../../config/supabaseClient';
 import { toast } from 'react-toastify';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import Footer from '../../components/Footer/Footer';
 
 const modules = {
   toolbar: [
@@ -20,9 +21,14 @@ const modules = {
       { indent: "-1" },
       { indent: "+1" }
     ],
-    ["link", "image", "video"]
-  ]
+    ["link", "image", "video"],
+    ["clean"] 
+  ],
+  clipboard: {
+    matchVisual: false,
+  },
 };
+
 
 const EditBlog = () => {
   const {id} = useParams()
@@ -82,7 +88,7 @@ const EditBlog = () => {
     if (data) {
       setError(null);
       toast.success('The blog was sucessfully updated!')
-      navigate('/blogs');
+      navigate(`/blogs/${id}`);
     }
   } catch (error) {
     console.error('Unhandled error:', error.message);
@@ -144,6 +150,7 @@ const EditBlog = () => {
             </form>
         </Paper>
         </div>
+        <Footer/>
     </>
   );
 };

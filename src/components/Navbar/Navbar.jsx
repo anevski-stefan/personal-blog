@@ -30,13 +30,14 @@ function Navbar() {
   };
 
   const menuItems = [
-    { text: 'Home', link: '/', showWhenLoggedOut: true },
+    { text: 'Home', link: '/', showWhenLoggedIn: true },
     { text: 'Blogs', link: '/blogs' },
     { text: 'Portfolio', link: '/portfolio' },
     { text: 'About me', link: '/about', showWhenLoggedOut: true },
     { text: 'Contact', link: '/contact', showWhenLoggedOut: true },
     { text: 'Admin Login', link: '/admin', showWhenLoggedOut: true },
-    { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true },
+    { text: 'Add Blog', link: '/blogs/add'},
+    // { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true },
     { text: 'Logout', link: '/logout', showWhenLoggedIn: true, onClick: handleLogout },
   ];
 
