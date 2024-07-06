@@ -45,6 +45,7 @@
     display: flex;
     flex-direction: column;
     line-height: 40px;
+    padding-left: 0;
 }
 
 .ql-syntax {
