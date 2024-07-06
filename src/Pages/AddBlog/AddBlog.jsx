@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Grid, Paper, Typography } from '@mui/material';
+import { TextField, Button, Grid, Typography } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import "./AddBlog.css";
 import supabase from '../../config/supabaseClient';
@@ -10,24 +10,16 @@ import Footer from '../../components/Footer/Footer';
 
 const modules = {
   toolbar: [
-    [{ "font": [] }, { "size": ["small", false, "large", "huge"] }], 
-
+    [{ "font": [] }, { "size": ["small", false, "large", "huge"] }],
     ["bold", "italic", "underline", "strike"],
-
     [{ "color": [] }, { "background": [] }],
-
     [{ "script": "sub" }, { "script": "super" }],
-
     [{ "header": 1 }, { "header": 2 }, "blockquote", "code-block"],
-
     [{ "list": "ordered" }, { "list": "bullet" }, { "indent": "-1" }, { "indent": "+1" }],
-
     [{ "direction": "rtl" }, { "align": [] }],
-
     ["link", "image", "video", "formula"],
-
     ["clean"]
-]
+  ]
 };
 
 const AddBlog = () => {
@@ -69,7 +61,7 @@ const AddBlog = () => {
     <>
       <Navbar />
       <div className='form__wrapper'>
-        <Paper elevation={3} style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
+        <div style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
           <Typography variant="h5" gutterBottom>
             Create Blog
           </Typography>
@@ -115,9 +107,9 @@ const AddBlog = () => {
             </Grid>
             {error && <p className='error'>{error}</p>}
           </form>
-        </Paper>
+        </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

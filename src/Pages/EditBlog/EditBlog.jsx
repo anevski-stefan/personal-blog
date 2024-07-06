@@ -114,7 +114,7 @@ const EditBlog = () => {
     <>
       <Navbar />
       <div className='form__wrapper'>
-        <Paper elevation={3} style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
+        <div style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
           <Typography variant="h5" gutterBottom>
             Edit Blog: <b>{title}</b>
           </Typography>
@@ -160,7 +160,7 @@ const EditBlog = () => {
             </Grid>
             {error && <p className='error'>{error}</p>}
           </form>
-        </Paper>
+        </div>
       </div>
       <Footer />
     </>
