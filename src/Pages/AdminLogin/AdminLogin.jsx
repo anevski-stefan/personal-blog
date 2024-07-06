@@ -52,9 +52,9 @@ const AdminLogin = () => {
         <>
         <Navbar />
         <div className="admin-panel__wrapper">
-            <Paper elevation={3} style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
+            <div style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
                 <Typography variant="h5" gutterBottom>
-                    Welcome to the admin panel
+                    Log in
                 </Typography>
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
@@ -87,7 +87,7 @@ const AdminLogin = () => {
                     </Grid>
                 </form>
                 {error && (<p className="error-message">{error}</p>)}
-            </Paper>
+            </div>
         </div>
         <Footer/>
         </>

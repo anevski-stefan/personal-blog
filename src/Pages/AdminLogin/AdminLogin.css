@@ -1,5 +1,6 @@
 .admin-panel__wrapper {
     margin-top: 150px;
+    min-height: calc(85vh - 200px);
 }
 
 .error-message {
