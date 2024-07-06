@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from '../../components/Navbar/Navbar'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
 import "./Home.css";
 import { Button, InputAdornment, TextField } from '@mui/material';
 import { FaArrowRight, FaFacebook, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
@@ -66,10 +67,19 @@ function Home() {
           </div>
           <div className="main-blog__content">
             <h1>{latestBlog ? latestBlog.title : ''}</h1>
-            <p dangerouslySetInnerHTML={{__html: shortDescription ? shortDescription : ''}}></p>
-            <Button type="submit" variant="contained" color="primary" className='keep-reading-btn'>
-              Keep Reading
-            </Button>
+            <p dangerouslySetInnerHTML={{ __html: shortDescription ? shortDescription : '' }}></p>
+            {latestBlog && (
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className='keep-reading-btn'
+                component={Link}
+                to={`/blogs/${latestBlog.id}`}
+              >
+                Keep Reading
+              </Button>
+            )}
             <div className="social-icons">
               <a href="#" className='social-icon'><FaYoutube /></a>
               <a href="#" className='social-icon'><FaTwitter /></a>
@@ -115,7 +125,7 @@ function Home() {
       </div>
       <Footer />
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

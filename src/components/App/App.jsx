@@ -27,12 +27,12 @@ function App() {
   }, [token]);
 
   return (<>
-    <ToastContainer />
+    <ToastContainer autoClose={1000}/>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
           <Route path="blogs" element={<Blogs />} />
-          <Route path="blogs/add" element={<AddBlog />} />
+          {token && <Route path="blogs/add" element={<AddBlog />} />}
           <Route path="blogs/:id" element={<BlogDetails />} />
           <Route path="blogs/:id/edit" element={<EditBlog />} />
           <Route path="admin" element={<AdminLogin setToken={setToken} />} />
