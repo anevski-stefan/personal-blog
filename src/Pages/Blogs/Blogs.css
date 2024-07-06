@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 66.5%;
+    width: 69%;
     gap: 20px;
     margin: 50px 0;
 }
@@ -24,4 +24,16 @@
 
 .blogs__wrapper .link-wrapper {
     width: 32%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .link-wrapper {
+        min-width: 40%;
+    }
+}
+
+@media (max-width: 767px) {
+    .link-wrapper {
+        min-width: 100%;
+    }
 }

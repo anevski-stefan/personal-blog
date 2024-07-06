@@ -5,28 +5,43 @@ import "./EditBlog.css";
 import { useNavigate, useParams } from 'react-router-dom';
 import supabase from '../../config/supabaseClient';
 import { toast } from 'react-toastify';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import Footer from '../../components/Footer/Footer';
 
+const Image = Quill.import('formats/image');
+class CustomImage extends Image {
+  static create(value) {
+    let node = super.create(value);
+    node.classList.add('img-fluid'); 
+    let container = document.createElement('div');
+    container.classList.add('img-fluid__container');
+    container.appendChild(node);
+    return container;
+  }
+}
+Quill.register(CustomImage, true);
+
 const modules = {
   toolbar: [
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    [{ font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote", "code-block"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" }
-    ],
-    ["link", "image", "video"],
-    ["clean"] 
-  ],
-  clipboard: {
-    matchVisual: false,
-  },
+    [{ "font": [] }, { "size": ["small", false, "large", "huge"] }], 
+
+    ["bold", "italic", "underline", "strike"],
+
+    [{ "color": [] }, { "background": [] }],
+
+    [{ "script": "sub" }, { "script": "super" }],
+
+    [{ "header": 1 }, { "header": 2 }, "blockquote", "code-block"],
+
+    [{ "list": "ordered" }, { "list": "bullet" }, { "indent": "-1" }, { "indent": "+1" }],
+
+    [{ "direction": "rtl" }, { "align": [] }],
+
+    ["link", "image", "video", "formula"],
+
+    ["clean"]
+]
 };
 
 

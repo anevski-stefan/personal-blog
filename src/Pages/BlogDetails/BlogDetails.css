@@ -28,16 +28,36 @@
 .description {
     margin-bottom: 30px;
     text-align: left;
+    padding: 0 20px;
+    text-align: justify;
 }
 
 .btns {
     display: flex;
     justify-content: start;
+    margin: 0 20px;
 }
 
 .btns :last-child {
     margin-left: 10px;
 }
+
+.description {
+    display: flex;
+    flex-direction: column;
+    line-height: 40px;
+}
+
+.ql-syntax {
+    line-height: normal;
+}
+
+.img-fluid__container {
+}
+
+.img-fluid {
+}
+
 
 @media (max-width: 1024px) {
     .blog-details {

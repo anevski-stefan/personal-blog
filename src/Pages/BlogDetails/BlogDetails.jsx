@@ -83,7 +83,7 @@ const BlogDetails = () => {
           <h1>{title}</h1>
           <p className='createdAt'>{createdAt}</p>
           {imageSrc.startsWith("https://") ? <img src={imageSrc} /> : "No image available" }
-          <p dangerouslySetInnerHTML={{__html: description}} className='description'></p>
+          <div dangerouslySetInnerHTML={{__html: description}} className='description ql-editor'></div>
           
           <div className='btns'>
             {token ? <Button component={Link} to={`/blogs/${id}/edit`} variant="outlined">
