@@ -41,12 +41,11 @@ const modules = {
     ["link", "image", "video", "formula"],
 
     ["clean"]
-]
+  ]
 };
 
-
 const EditBlog = () => {
-  const {id} = useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const [imageSrc, setImageSrc] = useState('');
@@ -56,97 +55,95 @@ const EditBlog = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const {data, error} = await supabase
-      .from('blogs')
-      .select()
-      .eq('id', id)
-      .single();
-    
+      const { data, error } = await supabase
+        .from('blogs')
+        .select()
+        .eq('id', id)
+        .single();
 
-    if(error) {
-      console.error('Error inserting data:', error.message);
-      toast.error(error.message);
-      navigate('/', {replace: true});
-    }
+      if (error) {
+        console.error('Error fetching data:', error.message);
+        toast.error(error.message);
+        navigate('/', { replace: true });
+      }
 
-    if(data) {  
-      setImageSrc(data.imageSrc);
-      setTitle(data.title);
-      setDescription(data.description);
-    }
-  }
+      if (data) {
+        setImageSrc(data.imageSrc);
+        setTitle(data.title);
+        setDescription(data.description);
+      }
+    };
     fetchBlogs();
-  }, [id, navigate])
+  }, [id, navigate]);
 
   const handleSubmit = async (event) => {
-  event.preventDefault();
+    event.preventDefault();
 
-  if (!imageSrc || !title || !description) {
-    setError('Please fill in all fields correctly!');
-    return;
-  }
-
-  try {
-    const { data, error } = await supabase
-      .from('blogs')
-      .update({ imageSrc, title, description })
-      .eq('id', id)
-      .select();
-
-    if (error) {
-      console.error('Error updating blog:', error.message);
-      setError('Failed to update blog. Please try again.');
-      toast.error(error.message);
+    if (!imageSrc || !title || !description) {
+      setError('Please fill in all fields correctly!');
       return;
     }
 
-    if (data) {
-      setError(null);
-      toast.success('The blog was sucessfully updated!')
-      navigate(`/blogs/${id}`);
-    }
-  } catch (error) {
-    console.error('Unhandled error:', error.message);
-    toast.error(error.message)
-    setError('An unexpected error occurred. Please try again.');
-  }
-};
+    try {
+      const { data, error } = await supabase
+        .from('blogs')
+        .update({ imageSrc, title, description })
+        .eq('id', id)
+        .select();
 
+      if (error) {
+        console.error('Error updating blog:', error.message);
+        setError('Failed to update blog. Please try again.');
+        toast.error(error.message);
+        return;
+      }
+
+      if (data) {
+        setError(null);
+        toast.success('The blog was successfully updated!');
+        navigate(`/blogs/${id}`);
+      }
+    } catch (error) {
+      console.error('Unhandled error:', error.message);
+      toast.error(error.message);
+      setError('An unexpected error occurred. Please try again.');
+    }
+  };
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className='form__wrapper'>
         <Paper elevation={3} style={{ padding: 20, maxWidth: 600, margin: 'auto' }}>
-        <Typography variant="h5" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Edit Blog: <b>{title}</b>
-        </Typography>
-        <form onSubmit={handleSubmit}>
+          </Typography>
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <TextField
-                    fullWidth
-                    label="Image Source"
-                    name="imageSrc"
-                    value={imageSrc}
-                    onChange={(e) => setImageSrc(e.target.value)}
-                    variant="outlined"
-                    required
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                    fullWidth
-                    label="Title"
-                    name="title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    variant="outlined"
-                    required
-                    />
-                </Grid>
-                <Grid item xs={12}> 
-                    <ReactQuill
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Image Source"
+                  name="imageSrc"
+                  value={imageSrc}
+                  onChange={(e) => setImageSrc(e.target.value)}
+                  variant="outlined"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Title"
+                  name="title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  variant="outlined"
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <ReactQuill
                   className="editor"
                   modules={modules}
                   theme='snow'
@@ -154,18 +151,18 @@ const EditBlog = () => {
                   onChange={setDescription}
                   required
                 />
-                </Grid>
-                <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" className='edit-btn'>
-                    Edit Blog
-                    </Button>
-                </Grid>
+              </Grid>
+              <Grid item xs={12} className="submit-button-container">
+                <Button type="submit" variant="contained" color="primary" className='edit-btn'>
+                  Edit Blog
+                </Button>
+              </Grid>
             </Grid>
             {error && <p className='error'>{error}</p>}
-            </form>
+          </form>
         </Paper>
-        </div>
-        <Footer/>
+      </div>
+      <Footer />
     </>
   );
 };
