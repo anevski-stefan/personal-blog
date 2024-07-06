@@ -40,7 +40,6 @@ const AdminLogin = () => {
                 sessionStorage.setItem('token', JSON.stringify(data));
                 toast.success("Logged in successfully");
                 navigate('/blogs', { state: { successMessage: 'Logged in successfully!' } });
-                
             }
         } catch (error) {
             console.error('Unhandled error:', error.message);

@@ -156,7 +156,7 @@ const EditBlog = () => {
                 />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" className='edit-btn'>
                     Edit Blog
                     </Button>
                 </Grid>

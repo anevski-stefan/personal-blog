@@ -36,8 +36,7 @@ function Navbar() {
     { text: 'About me', link: '/about', showWhenLoggedOut: true },
     { text: 'Contact', link: '/contact', showWhenLoggedOut: true },
     { text: 'Admin Login', link: '/admin', showWhenLoggedOut: true },
-    { text: 'Add Blog', link: '/blogs/add'},
-    // { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true },
+    { text: 'Add Blog', link: '/blogs/add', showWhenLoggedIn: true},
     { text: 'Logout', link: '/logout', showWhenLoggedIn: true, onClick: handleLogout },
   ];
 

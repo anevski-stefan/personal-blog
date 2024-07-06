@@ -35,8 +35,7 @@ const BlogDetails = () => {
         
     
         if(error) {
-            console.error('Error inserting data:', error.message);
-            toast.error(error.message);
+            console.error(error.message);
             navigate('/blogs', {replace: true});
         }
     
@@ -66,7 +65,7 @@ const BlogDetails = () => {
 
         if(error) {
           console.log(error);
-          toast.error(error);
+          toast.error('The blog was not succesfully removed!');
           return;
         }
 
