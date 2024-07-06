@@ -107,7 +107,7 @@ const AddBlog = () => {
                   required
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} className="submit-button-container">
                 <Button type="submit" variant="contained" color="primary">
                   Create Blog
                 </Button>
